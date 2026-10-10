@@ -1,0 +1,94 @@
+[
+  {
+    "name": "Dynammic Programming",
+    "count": 36
+  },
+  {
+    "name": "Greedy",
+    "count": 22
+  },
+  {
+    "name": "Backtracking",
+    "count": 21
+  },
+  {
+    "name": "Binary Trees",
+    "count": 20
+  },
+  {
+    "name": "Graphs",
+    "count": 20
+  },
+  {
+    "name": "Linked List",
+    "count": 17
+  },
+  {
+    "name": "Hashing",
+    "count": 15
+  },
+  {
+    "name": "Stack",
+    "count": 15
+  },
+  {
+    "name": "Two Pointers",
+    "count": 12
+  },
+  {
+    "name": "Bit Manipulation",
+    "count": 10
+  },
+  {
+    "name": "Binary Search Trees",
+    "count": 7
+  },
+  {
+    "name": "Intervals",
+    "count": 7
+  },
+  {
+    "name": "Arrays",
+    "count": 6
+  },
+  {
+    "name": "Maths",
+    "count": 5
+  },
+  {
+    "name": "Strings",
+    "count": 5
+  },
+  {
+    "name": "Divide And Conquer",
+    "count": 4
+  },
+  {
+    "name": "Binary Search",
+    "count": 4
+  },
+  {
+    "name": "Sliding Window",
+    "count": 3
+  },
+  {
+    "name": "Sorting",
+    "count": 2
+  },
+  {
+    "name": "Heap",
+    "count": 2
+  },
+  {
+    "name": "Prefix Sum",
+    "count": 2
+  },
+  {
+    "name": "Trie",
+    "count": 1
+  },
+  {
+    "name": "Queue",
+    "count": 1
+  }
+]

@@ -1,0 +1,33 @@
+name: Sync Project Telemetry
+
+on:
+  schedule:
+    - cron: '0 0,12 * * *' # Run every 12 hours
+  workflow_dispatch: # Allow manual trigger from GitHub UI
+
+jobs:
+  sync-projects:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Fetch Project Data & Incidents
+        run: npm run sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add src/data/projects-data.json src/data/incidents-data.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-sync telemetry and incidents [skip ci]" && git push)

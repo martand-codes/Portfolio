@@ -1,0 +1,38 @@
+{
+  "AankhoDekha": {
+    "name": "AankhoDekha",
+    "fullName": "sam28iksha/AankhoDekha",
+    "description": "City-Wide AI Engine for Multi-Camera ANPR Trajectory Tracking and Urban Traffic Analytics",
+    "stars": 0,
+    "forks": 0,
+    "openIssues": 0,
+    "lastUpdate": "2026-10-08T06:02:03Z",
+    "language": "TypeScript",
+    "url": "https://github.com/sam28iksha/AankhoDekha"
+  },
+  "MoneyTrack": {
+    "name": "MoneyTrack",
+    "fullName": "martand-codes/MoneyTrack",
+    "description": "A logic-heavy MERN dashboard optimized via unified transaction schemas. Features JWT-secured REST APIs, real-time Recharts analytics, and automated Excel reporting.Using it by myself for having a good relation with my finances by maintaining college gym and game budget under control.",
+    "stars": 0,
+    "forks": 0,
+    "openIssues": 0,
+    "lastUpdate": "2026-10-08T05:59:16Z",
+    "language": "JavaScript",
+    "url": "https://github.com/martand-codes/MoneyTrack"
+  },
+  "GameStation": {
+    "name": "GameStation",
+    "fullName": "martand-codes/GameStation",
+    "description": "This is a end to end System for the Gamers and Developers",
+    "stars": 0,
+    "forks": 0,
+    "openIssues": 0,
+    "lastUpdate": "2026-10-08T05:52:35Z",
+    "language": "TypeScript",
+    "url": "https://github.com/martand-codes/GameStation"
+  },
+  "_meta": {
+    "lastSynced": "2026-10-08T18:12:07.058Z"
+  }
+}

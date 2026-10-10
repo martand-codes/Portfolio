@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "lastSynced": "2026-10-08T18:12:09.269Z"
+  },
+  "incidents": [
+    {
+      "id": 5757338997,
+      "number": 1,
+      "title": "Prisma Upgrade Broke the Database Toolchain",
+      "status": "RESOLVED",
+      "createdAt": "2026-10-08T06:51:37Z",
+      "closedAt": "2026-10-08T06:52:37Z",
+      "githubUrl": "https://github.com/martand-codes/GameStation/issues/1",
+      "projectName": "GameStation",
+      "inputState": "GameStation was being developed with TypeScript, Node.js,\nPostgreSQL and Prisma as the ORM/database layer.\n\nThe project was upgraded to a newer Prisma version while the\ndatabase schema and existing application code were already in use.",
+      "failure": "The Prisma upgrade introduced compatibility and initialization\nproblems across the existing database setup.\n\nThe project began producing Prisma-related errors that prevented\nthe normal development workflow from functioning correctly.\n\nThe issue became particularly difficult because the failure was not\nisolated to a single application query; the ORM/client setup itself\nwas affected.",
+      "investigation": "Inspected the Prisma schema, generated client, package versions and\ndatabase configuration.\n\nThe dependency versions were compared against the existing project\nsetup and the behavior of the newly generated Prisma client.\n\nThe investigation showed that the newer Prisma version introduced\nchanges incompatible with the project's existing configuration and\nusage.",
+      "rootCause": "The project had moved to a newer Prisma release whose behavior and\nclient/tooling requirements were not compatible with the existing\nGameStation database setup.\n\nThe dependency upgrade was therefore treated as a breaking change\nrather than a routine package update.",
+      "resolution": "Rolled Prisma back to the previously compatible version and\nregenerated the Prisma client.\n\nThe database workflow was then restored and development could\ncontinue using the stable Prisma configuration.",
+      "lessons": "ORM upgrades are not automatically safe just because the application\ncode itself has not changed.\n\nBefore upgrading a core infrastructure dependency, verify:\n\n- version compatibility\n- generated client behavior\n- database adapter/configuration requirements\n- migration behavior\n- existing application integration\n\nA working dependency version should be treated as part of the\nproject's infrastructure contract."
+    },
+    {
+      "id": 5757233531,
+      "number": 4,
+      "title": "Authentication Failure During Production Login",
+      "status": "RESOLVED",
+      "createdAt": "2026-10-08T06:43:41Z",
+      "closedAt": "2026-10-08T06:43:47Z",
+      "githubUrl": "https://github.com/sam28iksha/AankhoDekha/issues/4",
+      "projectName": "AankhoDekha",
+      "inputState": "Aankhodekha's authentication system was deployed as part of the\nproduction backend.",
+      "failure": "Login requests resulted in HTTP 500 errors.\n\nThe backend logs contained:\n\npasslib.exc.UnknownHashError\n\nThe authentication endpoint was therefore unable to correctly process\nthe stored password hash.",
+      "investigation": "Inspected the backend logs and traced the failure through the\nauthentication/password verification path.\n\nThe error originated from the password hashing/verification layer\nrather than from the HTTP routing layer itself.",
+      "rootCause": "The authentication system encountered a password hash that the\nconfigured password hashing implementation could not correctly\ninterpret.",
+      "resolution": "Corrected the password hashing/authentication configuration and\nverified the login flow again after deployment.",
+      "lessons": "Authentication failures should be investigated from the complete\nrequest path:\n\nHTTP request → authentication route → password verification →\nstored credential format.\n\nA successful deployment does not guarantee that existing authentication\ndata is compatible with the runtime configuration."
+    },
+    {
+      "id": 5757167461,
+      "number": 3,
+      "title": "Docker Bloat",
+      "status": "RESOLVED",
+      "createdAt": "2026-10-08T06:37:53Z",
+      "closedAt": "2026-10-08T06:38:08Z",
+      "githubUrl": "https://github.com/sam28iksha/AankhoDekha/issues/3",
+      "projectName": "AankhoDekha",
+      "inputState": "Aankhodekha's containerized system was being packaged with the complete inference environment, including CUDA/ML dependencies.",
+      "failure": "Docker storage consumption became disproportionately large.\n\nThe backend image reached approximately 11.6 GB and Docker reported a\nlarge amount of reclaimable storage.\n\nThe storage pressure eventually consumed the available space on the\nlocal C: drive reaching 0 bytes free.",
+      "investigation": "Inspected Docker image, container, volume, and build cache usage using\nDocker's disk usage tooling.\n\nReviewed the available storage on the C: drive and investigated which\nDocker artifacts were consuming the space.\n\nThe investigation showed that the ML/CUDA environment contributed\nsubstantially to the container footprint.",
+      "rootCause": "The Aankhodekha backend required heavyweight ML/GPU runtime dependencies\nfor inference, resulting in a substantially larger container footprint\nthan a conventional API service.\n\nRepeated Docker image rebuilds also accumulated storage through images,\nlayer, and build cache.",
+      "resolution": "Reclaimed Docker storage by removing unnecessary images, containers,\nand build-cache data.\n\nThe available disk space was restored and the deployment environment\nwas able to continue operating.",
+      "lessons": "Avoid rebuilding the complete Docker Compose stack unnecessarily for\nsmall application changes.\n\nUnderstand Docker's image layers and build cache before repeatedly\nrebuilding large ML-based images, and monitor Docker disk usage when\nworking with heavyweight inference environments."
+    },
+    {
+      "id": 5756907248,
+      "number": 2,
+      "title": "engineering-incident",
+      "status": "RESOLVED",
+      "createdAt": "2026-10-08T06:14:50Z",
+      "closedAt": "2026-10-08T06:17:14Z",
+      "githubUrl": "https://github.com/sam28iksha/AankhoDekha/issues/2",
+      "projectName": "AankhoDekha",
+      "inputState": "Aankhodekha was processing multiple camera feeds concurrently.\nThe ANPR pipeline used YOLO for vehicle/plate detection and\nPaddleOCR for plate recognition.",
+      "failure": "Concurrent ingestion caused PaddleOCR/native runtime failures,\nincluding SIGSEGV and memory corruption errors such as:\n\nmalloc(): unsorted double linked list corrupted and backend completely fell apart",
+      "investigation": "The failure appeared specifically under concurrent processing. It was too slow and it froze the terminal\nSequential ingestion was tested first and completed successfully.",
+      "rootCause": "Concurrent execution of the OCR/inference path was identified as\nthe primary suspect.\n\nThe crash occurred at the native process level, meaning a normal\nPython try/except could not reliably recover from the failure.",
+      "resolution": "Changed the ingestion strategy to sequential processing.\n\nThe complete camera set was then processed successfully, producing\n44 persisted events across the available camera videos.",
+      "lessons": "Native crashes require a different debugging strategy from ordinary\nPython exceptions.\n\nBefore adding more error handling, reproduce the failure,\nidentify the execution path, and isolate the concurrency boundary."
+    }
+  ]
+}
