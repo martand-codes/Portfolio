@@ -1,8 +1,24 @@
 {
   "_meta": {
-    "lastSynced": "2026-10-08T18:12:09.269Z"
+    "lastSynced": "2026-10-13T11:58:38.953Z"
   },
   "incidents": [
+    {
+      "id": 5829468582,
+      "number": 2,
+      "title": "Differential Upgrade 400 Bad Request & Checkout Concurrency Anomalies",
+      "status": "RESOLVED",
+      "createdAt": "2026-10-13T11:28:20Z",
+      "closedAt": "2026-10-13T11:28:26Z",
+      "githubUrl": "https://github.com/martand-codes/GameStation/issues/2",
+      "projectName": "GameStation",
+      "inputState": "User with an owned game edition attempted to view and upgrade editions on `/store/games/:id`. System was expected to recognize the highest owned tier and disable duplicate purchases.",
+      "failure": "Clicking \"Upgrade Edition\" triggered a 400 Bad Request: Simultaneously, concurrent requests for free claims threw `P2002 Unique constraint failed on (userId, gameId)` (500 error), and parallel checkout requests generated duplicate payable Stripe sessions.",
+      "investigation": "1. Queried database: User had 2 payments:\n   - Base Deluxe Edition: `amount = ₹79.99`\n   - Ultimate Upgrade: `amount = ₹20.00`, `pricing.price = ₹99.99`\n2. `checkGameOwnership` queried `Payment` with `orderBy: { amount: \"desc\" }`.\n3. Because the upgrade was a differential fee (`₹20.00 < ₹79.99`), the query selected the base tier instead of the upgraded tier.\n4. Stress-tested with 10 concurrent requests via a test script to identify race condition bottlenecks.",
+      "rootCause": "**Missing Checkout Idempotency:** Concurrent checkout requests created duplicate Stripe sessions due to lack of idempotency keys.\n**Non-Idempotent Free Claims:** Free game path used `prisma.create()` instead of `upsert()`, causing unhandled unique-constraint crashes under parallel load.",
+      "resolution": "1. **Corrected Tier Evaluation:** Refactored `checkGameOwnership` and `createCheckoutSession` to determine ownership ceiling via `pricing.price` across all successful payments.\n2. **Stripe Idempotency & Session Reuse:**\n   - Added deterministic Stripe `idempotencyKey` headers (`cs-single-${userId}-${gameId}-${pricingId}-${timeBucket}`).\n   - Added reuse of open `PENDING` sessions within a 30-minute window.\n   - Used `prisma.payment.upsert()` on `@unique providerSessionId`.\n3. **Atomic Entitlements:** Replaced `prisma.userLibrary.create()` with `prisma.userLibrary.upsert()`.",
+      "lessons": "- Financial transaction amounts cannot represent entitlement tiers in differential pricing architectures.\n- External API calls (payment gateways) require upstream idempotency keys; database constraints alone cannot prevent double-charging.\n- Any write to a table with unique constraints must be idempotent (`upsert`) to guarantee concurrency safety."
+    },
     {
       "id": 5757338997,
       "number": 1,
@@ -54,7 +70,7 @@
     {
       "id": 5756907248,
       "number": 2,
-      "title": "engineering-incident",
+      "title": "Camera Ingestion",
       "status": "RESOLVED",
       "createdAt": "2026-10-08T06:14:50Z",
       "closedAt": "2026-10-08T06:17:14Z",

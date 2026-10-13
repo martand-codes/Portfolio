@@ -21,7 +21,7 @@ jobs:
           node-version: '20'
           
       - name: Fetch Project Data & Incidents
-        run: npm run sync:incidents
+        run: npm run sync:projects && npm run sync:incidents
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
