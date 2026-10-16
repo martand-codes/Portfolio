@@ -1,15 +1,15 @@
 {
   "_meta": {
-    "lastSynced": "2026-10-16T10:09:27.791Z"
+    "lastSynced": "2026-10-16T10:26:29.782Z"
   },
   "incidents": [
     {
       "id": 5882233129,
       "number": 1,
       "title": "GitHub Actions 403 Forbidden on Automated Commits",
-      "status": "INVESTIGATING",
+      "status": "RESOLVED",
       "createdAt": "2026-10-16T10:04:58Z",
-      "closedAt": null,
+      "closedAt": "2026-10-16T10:23:30Z",
       "githubUrl": "https://github.com/martand-codes/Portfolio/issues/1",
       "projectName": "Portfolio",
       "inputState": "The portfolio uses a scheduled ETL (Extract, Transform, Load) pipeline via GitHub Actions. A Node.js script fetches live project metrics, DSA stats, and incident logs, and the Action attempts to commit and push the updated JSON data back to the repository.",
