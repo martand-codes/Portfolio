@@ -1,8 +1,24 @@
 {
   "_meta": {
-    "lastSynced": "2026-10-16T03:36:43.928Z"
+    "lastSynced": "2026-10-16T10:09:27.791Z"
   },
   "incidents": [
+    {
+      "id": 5882233129,
+      "number": 1,
+      "title": "GitHub Actions 403 Forbidden on Automated Commits",
+      "status": "INVESTIGATING",
+      "createdAt": "2026-10-16T10:04:58Z",
+      "closedAt": null,
+      "githubUrl": "https://github.com/martand-codes/Portfolio/issues/1",
+      "projectName": "Portfolio",
+      "inputState": "The portfolio uses a scheduled ETL (Extract, Transform, Load) pipeline via GitHub Actions. A Node.js script fetches live project metrics, DSA stats, and incident logs, and the Action attempts to commit and push the updated JSON data back to the repository.",
+      "failure": "The GitHub Action workflow failed during the git push step. \nThe terminal logs displayed a fatal error: remote: Permission to martand-codes/Portfolio.git denied to github-actions[bot]. fatal: unable to access ... 403. \nThe automated data pipeline was completely broken, preventing live data from reaching the production UI.",
+      "investigation": "Verified that the GITHUB_TOKEN secret was being correctly passed into the workflow environment. \nChecked the repository settings and realized that the default GitHub Actions token scope only granted read-only permissions to the repository contents. \nThe script successfully pulled the data and modified incidents-data.json locally on the runner, but the bot was unauthorized to push those file modifications back to the main branch.",
+      "rootCause": "By default, GitHub repository settings restrict the github-actions[bot] permissions to \"Read-only\" for security purposes. The workflow required \"Read and write permissions\" to execute git commit and git push.",
+      "resolution": "Navigated to the repository Settings -> Actions -> General.\nChanged the \"Workflow permissions\" setting from \"Read repository contents and packages permissions\" to \"Read and write permissions\". \nTriggered the workflow manually, and the data files were successfully committed and pushed to the repository.",
+      "lessons": "When designing automated GitOps pipelines where a CI/CD runner modifies and pushes code, always verify the token scope. The default security posture for CI runners is typically read-only, and write permissions must be explicitly granted and audited."
+    },
     {
       "id": 5829468582,
       "number": 2,
