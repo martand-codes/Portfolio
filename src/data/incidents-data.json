@@ -1,8 +1,24 @@
 {
   "_meta": {
-    "lastSynced": "2026-10-21T03:45:10.286Z"
+    "lastSynced": "2026-10-21T09:52:03.781Z"
   },
   "incidents": [
+    {
+      "id": 5958129840,
+      "number": 2,
+      "title": "Template Frontmatter Ignored by GitHub Issue Parser",
+      "status": "RESOLVED",
+      "createdAt": "2026-10-21T09:43:11Z",
+      "closedAt": "2026-10-21T09:43:20Z",
+      "githubUrl": "https://github.com/martand-codes/Portfolio/issues/2",
+      "projectName": "Portfolio",
+      "inputState": "The portfolio's incident logging system relies on a standardized GitHub Issue Template (.github/ISSUE_TEMPLATE/engineering-incident.md). This template pre-fills the issue description with the required markdown headers (## INPUT_STATE, ## FAILURE, etc.) and automatically applies the engineering-incident label via YAML frontmatter.",
+      "failure": "When creating a new issue, GitHub did not recognize the file as an Issue Template. Instead of presenting a template selector, it routed to a blank issue page. Furthermore, the YAML configuration block was rendered as plain text inside the issue body, and the engineering-incident label was not automatically applied. \nBecause the label was missing, the ETL pipeline fetched 0 incidents.",
+      "investigation": "Inspected the markdown syntax of the .github/ISSUE_TEMPLATE/engineering-incident.md file. \nThe YAML configuration block was formatted as:\nname: Engineering Incident\ndescription: ...\nHowever, a standard YAML frontmatter block strictly requires three dashes (---) at both the beginning and the end of the block.",
+      "rootCause": "The template file was missing the opening --- at Line 1. Without this standard YAML delimiter, the GitHub backend parser failed to recognize the configuration block, gracefully degrading the file to a standard markdown document and ignoring all automated labeling and title instructions.",
+      "resolution": "Added the missing --- to the first line of the file and changed the description key to the correct GitHub keyword about. \nOnce pushed to the repository, the GitHub UI successfully parsed the template, presented the template selector to the user, and automatically applied the engineering-incident label upon issue creation.",
+      "lessons": "Strict parsers (like YAML frontmatter parsers) have zero tolerance for syntax deviations. When building automation pipelines that rely on strict file structures, always validate the syntax locally or check the vendor documentation for exact formatting requirements before pushing to production."
+    },
     {
       "id": 5882233129,
       "number": 1,
