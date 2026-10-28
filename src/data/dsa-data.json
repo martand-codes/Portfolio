@@ -20,12 +20,12 @@
     "count": 20
   },
   {
-    "name": "Linked List",
+    "name": "Hashing",
     "count": 17
   },
   {
-    "name": "Hashing",
-    "count": 15
+    "name": "Linked List",
+    "count": 17
   },
   {
     "name": "Stack",
@@ -44,15 +44,15 @@
     "count": 7
   },
   {
+    "name": "Arrays",
+    "count": 7
+  },
+  {
     "name": "Intervals",
     "count": 7
   },
   {
     "name": "Maths",
-    "count": 6
-  },
-  {
-    "name": "Arrays",
     "count": 6
   },
   {
@@ -89,6 +89,10 @@
   },
   {
     "name": "Queue",
+    "count": 1
+  },
+  {
+    "name": "SQL",
     "count": 1
   }
 ]
