@@ -60,6 +60,10 @@
     "count": 5
   },
   {
+    "name": "SQL",
+    "count": 5
+  },
+  {
     "name": "Divide And Conquer",
     "count": 4
   },
@@ -69,10 +73,6 @@
   },
   {
     "name": "Sliding Window",
-    "count": 3
-  },
-  {
-    "name": "SQL",
     "count": 3
   },
   {
