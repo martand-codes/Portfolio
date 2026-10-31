@@ -40,6 +40,10 @@
     "count": 10
   },
   {
+    "name": "SQL",
+    "count": 8
+  },
+  {
     "name": "Binary Search Trees",
     "count": 7
   },
@@ -57,10 +61,6 @@
   },
   {
     "name": "Strings",
-    "count": 5
-  },
-  {
-    "name": "SQL",
     "count": 5
   },
   {
