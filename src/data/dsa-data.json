@@ -21,7 +21,7 @@
   },
   {
     "name": "Hashing",
-    "count": 17
+    "count": 18
   },
   {
     "name": "Linked List",
@@ -29,7 +29,11 @@
   },
   {
     "name": "Stack",
-    "count": 15
+    "count": 16
+  },
+  {
+    "name": "SQL",
+    "count": 14
   },
   {
     "name": "Two Pointers",
@@ -40,15 +44,11 @@
     "count": 10
   },
   {
-    "name": "SQL",
-    "count": 10
+    "name": "Arrays",
+    "count": 9
   },
   {
     "name": "Binary Search Trees",
-    "count": 7
-  },
-  {
-    "name": "Arrays",
     "count": 7
   },
   {
