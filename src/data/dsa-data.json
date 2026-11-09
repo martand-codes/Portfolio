@@ -12,12 +12,12 @@
     "count": 23
   },
   {
-    "name": "Backtracking",
-    "count": 21
+    "name": "Hashing",
+    "count": 22
   },
   {
-    "name": "Hashing",
-    "count": 20
+    "name": "Backtracking",
+    "count": 21
   },
   {
     "name": "Binary Trees",
@@ -32,16 +32,16 @@
     "count": 16
   },
   {
-    "name": "SQL",
-    "count": 14
-  },
-  {
     "name": "Two Pointers",
-    "count": 12
+    "count": 15
   },
   {
     "name": "Arrays",
-    "count": 12
+    "count": 14
+  },
+  {
+    "name": "SQL",
+    "count": 14
   },
   {
     "name": "Bit Manipulation",
