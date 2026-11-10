@@ -68,6 +68,10 @@
     "count": 5
   },
   {
+    "name": "Trie",
+    "count": 5
+  },
+  {
     "name": "Divide And Conquer",
     "count": 4
   },
@@ -86,10 +90,6 @@
   {
     "name": "Prefix Sum",
     "count": 2
-  },
-  {
-    "name": "Trie",
-    "count": 1
   },
   {
     "name": "Queue",
