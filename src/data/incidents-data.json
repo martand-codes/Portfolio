@@ -1,8 +1,24 @@
 {
   "_meta": {
-    "lastSynced": "2026-11-10T06:24:21.639Z"
+    "lastSynced": "2026-11-10T19:26:13.312Z"
   },
   "incidents": [
+    {
+      "id": 6309466960,
+      "number": 3,
+      "title": "GameStation Trailer Video Playback",
+      "status": "RESOLVED",
+      "createdAt": "2026-11-10T14:59:38Z",
+      "closedAt": "2026-11-10T14:59:49Z",
+      "githubUrl": "https://github.com/martand-codes/GameStation/issues/3",
+      "projectName": "GameStation",
+      "inputState": "Navigating to the game details page (/store/games/:id) where the media gallery was expected to automatically play the developer's submitted YouTube trailer URL.",
+      "failure": "The video viewport showed a dead black box displaying static text VIDEO PLAYER INITIALIZING... [URL] with no actual playback and no clickable link",
+      "investigation": "Inspected MediaGallery.tsx and found a hardcoded placeholder <div> printing raw text instead of mounting player engine.",
+      "rootCause": "The component was an unfinished mock stub, and web browsers cannot natively play YouTube URLs inside HTML5 <video> tags without embedding YouTube's player API.",
+      "resolution": "Added regex to extract the 11-char YouTube ID, embedded a privacy-friendly youtube-nocookie.com iframe with autoplay=1&mute=1, and added native <video> fallback for raw .mp4 uploads.",
+      "lessons": "Never leave placeholder mock UI in production customer flows, and always pair web video autoplay with muted to prevent modern browsers from blocking playback."
+    },
     {
       "id": 5958423114,
       "number": 4,
