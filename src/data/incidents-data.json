@@ -1,8 +1,40 @@
 {
   "_meta": {
-    "lastSynced": "2026-11-13T19:20:49.739Z"
+    "lastSynced": "2026-11-13T22:00:05.950Z"
   },
   "incidents": [
+    {
+      "id": 6380721582,
+      "number": 5,
+      "title": "Vercel SPA 404 on Refresh & Git Push Rejection",
+      "status": "RESOLVED",
+      "createdAt": "2026-11-13T21:59:27Z",
+      "closedAt": "2026-11-13T21:59:36Z",
+      "githubUrl": "https://github.com/martand-codes/Portfolio/issues/5",
+      "projectName": "Portfolio",
+      "inputState": "React SPA deployed on Vercel threw a 404 error whenever refreshing non-root routes (e.g. /incidents).",
+      "failure": "Browser refresh returned Vercel 404 (Not Found).\ngit push was rejected (main -> main (fetch first)) when attempting to push the fix.",
+      "investigation": "Vercel checks disk for matching static files on refresh instead of handing routing over to index.html.\nRemote main had new automated commits from GitHub Actions sync scripts that were missing locally.",
+      "rootCause": "Missing SPA rewrite rule in vercel.json.\nBranch divergence between local and remote main.",
+      "resolution": "Added vercel.json with a rewrite rule (/(.*) -> /index.html).\nRan git pull --rebase origin main and pushed cleanly.",
+      "lessons": "SPAs on static hosting always need rewrite rules for client-side routing to survive page refreshes.\nUse git pull --rebase on repos with active automated commit workflows."
+    },
+    {
+      "id": 6379465619,
+      "number": 4,
+      "title": "Monolithic Client Bundle Bloat & Route-Tree Starvation (1.88 MB Initial Payload)",
+      "status": "RESOLVED",
+      "createdAt": "2026-11-13T20:33:21Z",
+      "closedAt": "2026-11-13T20:33:29Z",
+      "githubUrl": "https://github.com/martand-codes/GameStation/issues/4",
+      "projectName": "GameStation",
+      "inputState": "Storefront player/developer clicking a game card from /store navigating to /store/games/:id.",
+      "failure": "React ErrorBoundary triggered with full-screen crash:\n\n[GameStation ErrorBoundary Caught] ReferenceError: Terminal is not defined at GameDetails (GameDetails.tsx:193:16)",
+      "investigation": "Inspected `Frontend/src/Pages/Storefront/GameDetails.tsx` at line 193. The component attempted to render `<Terminal className=\"...\" />` inside the system requirements HUD, but the `Terminal` icon was missing from the `lucide-react` import list. Concurrently, uncertified games in `PENDING` review returned `404 Not Found` to developers attempting preview.",
+      "rootCause": "1. Unused import cleanup inadvertently stripped `Terminal` from `lucide-react` imports in `GameDetails.tsx`.\n2. Backend `/api/store/games/:id` strictly filtered by `status: 'PUBLISHED'`, preventing studio developers from previewing their own pending submissions.",
+      "resolution": "1. Restored `Terminal` to the `lucide-react` import statement in `GameDetails.tsx`.\n2. Attached `optionalToken` middleware to `Backend/src/Routes/store.routes.ts` and updated `getStoreGameById` to allow creators, admins, and owners to view games in `PENDING` certification.",
+      "lessons": "1. Run `tsc -b` and end-to-end route smoke tests before pushing UI component changes.\n2. Error boundaries prevent platform-wide blank screens, but route-level unit checks must validate optional icon dependencies and preview authorization logic."
+    },
     {
       "id": 6309466960,
       "number": 3,
