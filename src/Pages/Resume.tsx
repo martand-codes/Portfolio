@@ -54,11 +54,28 @@ export const Resume = () => {
 
           {/* Resume preview container */}
           <div className="w-full h-[85vh] min-h-[600px] relative bg-black/40">
-            <iframe
-              src="/Details/Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+            <object
+              data="/Details/Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+              type="application/pdf"
               className="w-full h-full bg-white"
-              title="Resume Preview"
-            />
+            >
+              <iframe
+                src="/Details/Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+                className="w-full h-full bg-white"
+                title="Resume Preview"
+              >
+                <div className="p-8 text-center text-white">
+                  <p className="mb-4">Your browser does not support inline PDF viewing.</p>
+                  <a
+                    href="/Details/Resume.pdf"
+                    download
+                    className="px-4 py-2 bg-accent text-white rounded-lg font-mono text-sm inline-block"
+                  >
+                    Download Resume
+                  </a>
+                </div>
+              </iframe>
+            </object>
           </div>
         </motion.div>
       </motion.div>

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer } from '../Utils/animations';
-import { Server, CheckCircle2, Clock, Calendar, Video, Landmark, Gamepad2, ArrowRight, Code2 } from 'lucide-react';
+import { Server, CheckCircle2, Clock, Calendar, Video, Landmark, Gamepad2, ArrowRight, Code2, Sparkles } from 'lucide-react';
 import { AankhoDekha } from '../Components/Systems/AankhoDekha';
 import { MoneyTrack } from '../Components/Systems/MoneyTrack';
 import { GameStation } from '../Components/Systems/GameStation';
@@ -26,7 +26,24 @@ export const Systems = () => {
           <h2 className="text-2xl font-bold text-white font-mono">Deployed Projects</h2>
         </div>
 
-        {/* Project 1: Camera Traffic Security System */}
+        {/* Project 1: Gaming Marketplace (FLAGSHIP) */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between text-muted font-mono uppercase tracking-widest text-sm ml-2">
+            <div className="flex items-center gap-2">
+              <Gamepad2 className="w-4 h-4 text-red-500" />
+              <span>Gaming Marketplace</span>
+            </div>
+            <div className="flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 border border-amber-500/30 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.12)]">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+              <span className="text-[10px] md:text-xs font-mono font-bold text-amber-300 tracking-wider">
+                FLAGSHIP • BEST CREATION TILL DATE
+              </span>
+            </div>
+          </div>
+          <GameStation />
+        </div>
+
+        {/* Project 2: Camera Traffic Security System */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 text-muted font-mono uppercase tracking-widest text-sm ml-2">
             <Video className="w-4 h-4 text-accent" />
@@ -35,7 +52,7 @@ export const Systems = () => {
           <AankhoDekha />
         </div>
 
-        {/* Project 2: Finance */}
+        {/* Project 3: Finance */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 text-muted font-mono uppercase tracking-widest text-sm ml-2">
             <Landmark className="w-4 h-4 text-success" />
@@ -43,24 +60,29 @@ export const Systems = () => {
           </div>
           <MoneyTrack />
         </div>
-
-
       </motion.section>
 
       {/* DEVELOPING PROJECTS */}
-      <motion.section variants={fadeUp} className="space-y-12">
+      <motion.section variants={fadeUp} className="space-y-6">
         <div className="flex items-center gap-3 border-b border-white/10 pb-4">
           <Clock className="w-6 h-6 text-yellow-500" />
           <h2 className="text-2xl font-bold text-white font-mono">Developing</h2>
         </div>
 
-        {/* Project 3: Gaming Marketplace */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2 text-muted font-mono uppercase tracking-widest text-sm ml-2">
-            <Gamepad2 className="w-4 h-4 text-red-500" />
-            <span>Gaming Marketplace</span>
+        <div className="bg-panel/50 border border-white/5 rounded-2xl p-8 border-dashed">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 text-yellow-400 font-mono text-sm font-bold mb-1">
+                <span>OPEN SOURCE & SYSTEMS ENGINEERING</span>
+              </div>
+              <p className="text-muted font-mono text-xs max-w-2xl leading-relaxed">
+                Actively deep diving into open-source distributed systems, database internals, and high-performance backend infrastructure. New architectures will be featured as implementations mature.
+              </p>
+            </div>
+            <div className="px-3 py-1 bg-yellow-500/10 border border-yellow-500/20 rounded-full text-[10px] font-mono text-yellow-400 font-bold tracking-wider whitespace-nowrap">
+              RESEARCH IN PROGRESS
+            </div>
           </div>
-          <GameStation />
         </div>
       </motion.section>
 
@@ -71,8 +93,26 @@ export const Systems = () => {
           <h2 className="text-2xl font-bold text-white font-mono">Upcoming</h2>
         </div>
 
-        <div className="bg-panel/50 border border-white/5 rounded-2xl p-8 text-center border-dashed">
-          <p className="text-muted font-mono text-sm">Planning next-generation distributed systems. Details dropping soon.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-panel/50 border border-white/5 rounded-2xl p-6 border-dashed">
+            <div className="flex items-center gap-2 text-blue-400 font-mono text-sm font-bold mb-2">
+              <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+              <span>Distributed Cache & Key-Value Store (Redis-Compatible)</span>
+            </div>
+            <p className="text-muted font-mono text-xs leading-relaxed">
+              Low-latency in-memory caching engine featuring LRU eviction policies, RESP protocol serialization, and append-only file (AOF) persistence.
+            </p>
+          </div>
+
+          <div className="bg-panel/50 border border-white/5 rounded-2xl p-6 border-dashed">
+            <div className="flex items-center gap-2 text-purple-400 font-mono text-sm font-bold mb-2">
+              <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+              <span>Event-Driven Distributed Log Broker</span>
+            </div>
+            <p className="text-muted font-mono text-xs leading-relaxed">
+              High-throughput message pipeline exploring zero-copy disk transfers, partition consumer groups, and write-ahead log indexing.
+            </p>
+          </div>
         </div>
       </motion.section>
 

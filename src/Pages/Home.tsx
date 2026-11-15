@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeUp, staggerContainer } from '../Utils/animations';
-import { ChevronDown, AlertTriangle, ArrowRight, Server, Database, Activity, Terminal, Video, Cpu, X, Maximize2 } from 'lucide-react';
+import { ChevronDown, AlertTriangle, ArrowRight, Database, Activity, Terminal, X, Maximize2, Gamepad2, CreditCard, Zap, Workflow } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import dsaData from '../data/dsa-data.json';
@@ -15,6 +15,11 @@ const totalSolved = dsaData.reduce((acc, curr) => acc + curr.count, 0);
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const lastSynced = (projectsData as any)._meta?.lastSynced;
 const syncLabel = lastSynced ? `SYNCED: ${getTimeAgo(lastSynced).toUpperCase()}` : 'LIVE DATA';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const gameStationData = (projectsData as any).GameStation;
+const gameStationSync = (projectsData as any)._meta?.lastSynced || gameStationData?.lastUpdate;
+const gameStationSyncLabel = gameStationSync ? `SYNCED: ${getTimeAgo(gameStationSync).toUpperCase()}` : 'LIVE DATA';
 
 const Typewriter = ({ text, delay = 50 }: { text: string, delay?: number }) => {
   const [displayText, setDisplayText] = useState('');
@@ -248,15 +253,15 @@ export const Home = () => {
                 <div className="flex flex-col gap-2 p-3 bg-background/50 rounded-xl border border-white/5 hover:border-blue-500/30 transition-colors group">
                   <div className="text-[10px] font-mono text-blue-500 tracking-widest">GAMESTATION</div>
                   <div className="flex items-center gap-2 text-xs font-mono text-muted overflow-hidden whitespace-nowrap">
-                    <span className="group-hover:text-white transition-colors">React</span>
+                    <span className="group-hover:text-white transition-colors">React 19</span>
                     <ArrowRight className="w-3 h-3 text-blue-500/50 shrink-0" />
-                    <span className="group-hover:text-white transition-colors">RBAC</span>
+                    <span className="group-hover:text-white transition-colors">Saga</span>
                     <ArrowRight className="w-3 h-3 text-blue-500/50 shrink-0" />
-                    <span className="group-hover:text-white transition-colors">Express</span>
+                    <span className="group-hover:text-white transition-colors">BM25 Trie</span>
                     <ArrowRight className="w-3 h-3 text-blue-500/50 shrink-0" />
                     <span className="group-hover:text-white transition-colors">Postgres</span>
                     <ArrowRight className="w-3 h-3 text-blue-500/50 shrink-0" />
-                    <span className="group-hover:text-blue-400 font-bold transition-colors">CDN</span>
+                    <span className="group-hover:text-blue-400 font-bold transition-colors">APM</span>
                   </div>
                 </div>
               </div>
@@ -343,94 +348,108 @@ export const Home = () => {
             </div>
           </motion.div>
 
-          {/* Featured Architecture Teaser */}
-          <motion.div variants={fadeUp} className="col-span-1 lg:col-span-8 bg-panel rounded-2xl p-8 border border-white/5 shadow-2xl relative overflow-hidden group hover:border-accent/30 transition-all duration-500">
-            <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent/10 rounded-full blur-[80px] group-hover:bg-accent/20 transition-all duration-700" />
+          {/* Featured Architecture Teaser: GameStation */}
+          <motion.div variants={fadeUp} className="col-span-1 lg:col-span-8 bg-panel rounded-2xl p-8 border border-white/5 shadow-2xl relative overflow-hidden group hover:border-red-500/30 transition-all duration-500">
+            <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-red-500/10 rounded-full blur-[80px] group-hover:bg-red-500/20 transition-all duration-700" />
 
             <div className="relative z-10 h-full flex flex-col justify-between">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div>
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center border border-accent/20">
-                      <Server className="w-5 h-5 text-accent" />
+                    <div className="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center border border-red-500/20">
+                      <Gamepad2 className="w-5 h-5 text-red-400" />
                     </div>
                     <div className="w-full">
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-1 w-full">
-                        <p className="text-xs text-accent font-mono tracking-widest">FEATURED SYSTEM</p>
+                        <p className="text-xs text-red-400 font-mono tracking-widest">FEATURED SYSTEM</p>
                         <div className="flex items-center gap-1.5 px-2 py-1 bg-success/10 border border-success/20 rounded-md">
                           <div className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
-                          <span className="text-[9px] text-success font-mono font-bold tracking-wider">{syncLabel}</span>
+                          <span className="text-[9px] text-success font-mono font-bold tracking-wider">{gameStationSyncLabel}</span>
                         </div>
                       </div>
-                      <h3 className="text-2xl font-bold text-white">Aankhodekha Infra</h3>
+                      <h3 className="text-2xl font-bold text-white">GameStation Core</h3>
                     </div>
                   </div>
                   <p className="text-muted text-sm leading-relaxed mb-6">
-                    A high-performance backend architecture built to process real-time ANPR camera feeds. Implements distributed load-balancing, AI-driven traffic intelligence, and a scalable microservices topology.
+                    A distributed gaming commerce engine & real-time telemetry platform. Features a 4-phase distributed Saga transaction coordinator with chaos injection, in-memory BM25 prefix search (&lt;1.68ms), and live W3C APM tracing.
                   </p>
                   <div className="flex flex-wrap gap-2 text-[10px] font-mono text-muted uppercase tracking-widest">
-                    <span className="px-2 py-1 border border-white/10 rounded bg-background/50">PostGIS</span>
+                    <span className="px-2 py-1 border border-red-500/20 text-red-400/90 rounded bg-background/50">React 19</span>
+                    <span className="px-2 py-1 border border-amber-500/20 text-amber-400/90 rounded bg-background/50">Saga Engine</span>
+                    <span className="px-2 py-1 border border-cyan-500/20 text-cyan-400/90 rounded bg-background/50">BM25 Trie</span>
+                    <span className="px-2 py-1 border border-purple-500/20 text-purple-400/90 rounded bg-background/50">PostgreSQL 18</span>
                     <span className="px-2 py-1 border border-white/10 rounded bg-background/50">Docker</span>
-                    <span className="px-2 py-1 border border-white/10 rounded bg-background/50">AWS EC2</span>
                   </div>
                 </div>
 
-                {/* Animated Data Pipeline Visual */}
-                <div className="flex flex-col justify-center items-center h-full bg-[#0a0a0a] border border-white/5 rounded-xl p-8 relative overflow-hidden group/visual min-h-[200px]">
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05)_0%,transparent_70%)] group-hover/visual:bg-[radial-gradient(ellipse_at_center,rgba(255,0,0,0.05)_0%,transparent_70%)] transition-colors duration-700"></div>
+                {/* Animated Data Pipeline Visual: GameStation Core */}
+                <div className="flex flex-col justify-center items-center h-full bg-[#0a0a0a] border border-white/5 rounded-xl px-4 py-8 relative overflow-hidden group/visual min-h-[220px]">
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05)_0%,transparent_70%)] group-hover/visual:bg-[radial-gradient(ellipse_at_center,rgba(239,68,68,0.08)_0%,transparent_70%)] transition-colors duration-700"></div>
 
                   {/* Floating Metrics */}
-                  <div className="absolute top-4 left-4 text-[9px] font-mono text-success flex items-center gap-1 opacity-0 group-hover/visual:opacity-100 transition-opacity delay-100">
-                    <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></span> INGEST: 60FPS
+                  <div className="absolute top-2.5 left-3 text-[9px] font-mono text-emerald-400 flex items-center gap-1 opacity-0 group-hover/visual:opacity-100 transition-opacity delay-100">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> SEARCH: &lt; 1.68ms
                   </div>
-                  <div className="absolute top-4 right-4 text-[9px] font-mono text-accent flex items-center gap-1 opacity-0 group-hover/visual:opacity-100 transition-opacity delay-300">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span> INF: 12ms
+                  <div className="absolute top-2.5 right-3 text-[9px] font-mono text-red-400 flex items-center gap-1 opacity-0 group-hover/visual:opacity-100 transition-opacity delay-300">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"></span> ROLLBACK: &lt; 12ms
                   </div>
 
-                  <div className="flex items-center gap-3 w-full justify-center relative z-10 mt-2">
+                  <div className="flex items-center gap-2 sm:gap-3 w-full justify-center relative z-10 my-auto">
 
-                    {/* Cameras */}
-                    <div className="flex flex-col gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-background border border-white/10 flex items-center justify-center relative group-hover/visual:border-accent/30 transition-colors shadow-lg">
-                        <Video className="w-4 h-4 text-muted group-hover/visual:text-accent transition-colors" />
-                        <span className="absolute -left-8 text-[8px] font-mono text-muted group-hover/visual:text-white transition-colors">CAM_1</span>
+                    {/* Left Ingress: Client + Stripe */}
+                    <div className="flex flex-col gap-6 items-center">
+                      <div className="w-10 h-10 rounded-lg bg-background border border-white/10 flex items-center justify-center relative group-hover/visual:border-blue-500/30 transition-colors shadow-lg">
+                        <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[8px] font-mono text-muted group-hover/visual:text-blue-400 transition-colors whitespace-nowrap">CLIENT</span>
+                        <Gamepad2 className="w-4 h-4 text-muted group-hover/visual:text-blue-400 transition-colors" />
                       </div>
-                      <div className="w-10 h-10 rounded-lg bg-background border border-white/10 flex items-center justify-center relative group-hover/visual:border-accent/30 transition-colors shadow-lg">
-                        <Video className="w-4 h-4 text-muted group-hover/visual:text-accent transition-colors" />
-                        <span className="absolute -left-8 text-[8px] font-mono text-muted group-hover/visual:text-white transition-colors">CAM_2</span>
+                      <div className="w-10 h-10 rounded-lg bg-background border border-white/10 flex items-center justify-center relative group-hover/visual:border-amber-500/30 transition-colors shadow-lg">
+                        <CreditCard className="w-4 h-4 text-muted group-hover/visual:text-amber-400 transition-colors" />
+                        <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[8px] font-mono text-muted group-hover/visual:text-amber-400 transition-colors whitespace-nowrap">STRIPE</span>
                       </div>
                     </div>
 
-                    {/* Input Pipes */}
-                    <div className="flex flex-col gap-12 justify-center">
-                      <div className="h-px w-10 bg-white/5 relative overflow-hidden group-hover/visual:bg-accent/20 transition-colors">
-                        <div className="absolute left-0 top-0 h-full w-4 bg-accent/80 animate-[slide_1s_linear_infinite]"></div>
+                    {/* Ingress Pipes */}
+                    <div className="flex flex-col gap-14 justify-center">
+                      <div className="h-px w-8 sm:w-10 bg-white/5 relative overflow-hidden group-hover/visual:bg-blue-500/20 transition-colors">
+                        <div className="absolute left-0 top-0 h-full w-4 bg-blue-500/80 animate-[slide_1s_linear_infinite]"></div>
                       </div>
-                      <div className="h-px w-10 bg-white/5 relative overflow-hidden group-hover/visual:bg-accent/20 transition-colors">
-                        <div className="absolute left-0 top-0 h-full w-4 bg-accent/80 animate-[slide_1s_linear_infinite_0.5s]"></div>
+                      <div className="h-px w-8 sm:w-10 bg-white/5 relative overflow-hidden group-hover/visual:bg-amber-500/20 transition-colors">
+                        <div className="absolute left-0 top-0 h-full w-4 bg-amber-500/80 animate-[slide_1s_linear_infinite_0.5s]"></div>
                       </div>
                     </div>
 
-                    {/* Processing Node */}
-                    <div className="w-16 h-16 rounded-xl bg-accent/5 border border-accent/20 flex items-center justify-center relative shadow-[0_0_20px_rgba(255,30,30,0.05)] group-hover/visual:bg-accent/10 transition-all duration-300 group-hover/visual:border-accent/50 group-hover/visual:shadow-[0_0_25px_rgba(255,30,30,0.2)] group-hover/visual:scale-105">
-                      <Cpu className="w-7 h-7 text-accent" />
-                      <div className="absolute -bottom-7 text-[9px] font-mono text-accent whitespace-nowrap tracking-widest font-bold">AWS EC2 CORE</div>
+                    {/* Central Coordinator: Saga Orchestrator */}
+                    <div className="w-16 h-16 rounded-xl bg-red-500/5 border border-red-500/20 flex items-center justify-center relative shadow-[0_0_20px_rgba(255,30,30,0.05)] group-hover/visual:bg-red-500/10 transition-all duration-300 group-hover/visual:border-red-500/50 group-hover/visual:shadow-[0_0_25px_rgba(255,30,30,0.25)] group-hover/visual:scale-105">
+                      <Workflow className="w-7 h-7 text-red-400" />
+                      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[9px] font-mono text-red-400 whitespace-nowrap tracking-widest font-bold">SAGA CORE</div>
                       <div className="absolute top-2 right-2 flex gap-0.5">
-                        <span className="w-1 h-1 bg-success rounded-full animate-ping"></span>
+                        <span className="w-1 h-1 bg-emerald-400 rounded-full animate-ping"></span>
                       </div>
                     </div>
 
-                    {/* Output Pipe */}
-                    <div className="h-px w-10 bg-white/5 relative overflow-hidden group-hover/visual:bg-success/20 transition-colors">
-                      <div className="absolute left-0 top-0 h-full w-6 bg-success/80 animate-[slide_1.5s_linear_infinite_0.2s]"></div>
+                    {/* Egress Pipes */}
+                    <div className="flex flex-col gap-14 justify-center">
+                      <div className="h-px w-8 sm:w-10 bg-white/5 relative overflow-hidden group-hover/visual:bg-cyan-500/20 transition-colors">
+                        <div className="absolute left-0 top-0 h-full w-6 bg-cyan-500/80 animate-[slide_1.5s_linear_infinite_0.2s]"></div>
+                      </div>
+                      <div className="h-px w-8 sm:w-10 bg-white/5 relative overflow-hidden group-hover/visual:bg-purple-500/20 transition-colors">
+                        <div className="absolute left-0 top-0 h-full w-6 bg-purple-500/80 animate-[slide_1.5s_linear_infinite_0.7s]"></div>
+                      </div>
                     </div>
 
-                    {/* Database Node */}
-                    <div className="w-12 h-12 rounded-lg bg-background border border-white/10 flex items-center justify-center relative group-hover/visual:border-success/30 transition-colors shadow-lg group-hover/visual:scale-105 duration-300">
-                      <Database className="w-5 h-5 text-muted group-hover/visual:text-success transition-colors" />
-                      <div className="absolute -bottom-7 text-[9px] font-mono text-muted group-hover/visual:text-success transition-colors whitespace-nowrap tracking-widest font-bold">POSTGIS</div>
+                    {/* Right Egress: In-Memory BM25 Trie + PostgreSQL 18 */}
+                    <div className="flex flex-col gap-6 items-center">
+                      <div className="w-10 h-10 rounded-lg bg-background border border-white/10 flex items-center justify-center relative group-hover/visual:border-cyan-500/30 transition-colors shadow-lg">
+                        <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[8px] font-mono text-muted group-hover/visual:text-cyan-400 transition-colors whitespace-nowrap">BM25 TRIE</span>
+                        <Zap className="w-4 h-4 text-muted group-hover/visual:text-cyan-400 transition-colors" />
+                      </div>
+                      <div className="w-10 h-10 rounded-lg bg-background border border-white/10 flex items-center justify-center relative group-hover/visual:border-purple-500/30 transition-colors shadow-lg">
+                        <Database className="w-5 h-5 text-muted group-hover/visual:text-purple-400 transition-colors" />
+                        <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[8px] font-mono text-muted group-hover/visual:text-purple-400 transition-colors whitespace-nowrap">PG_SQL 18</span>
+                      </div>
                     </div>
+
                   </div>
                 </div>
               </div>

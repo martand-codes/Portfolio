@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Terminal, Server, Database, Cloud, Shield, GlobeCode, Cpu, UserCheck } from 'lucide-react';
+import { Terminal, Server, Database, Shield, GlobeCode, Cpu, Workflow, Activity, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const ArsenalInAction = () => {
@@ -96,40 +96,40 @@ export const ArsenalInAction = () => {
           <h3 className="text-xl font-bold text-white mb-2 relative z-10 flex items-center gap-2">
             <span className="text-blue-500 font-mono">03.</span> GameStation
           </h3>
-          <p className="text-muted text-sm font-mono mb-8 relative z-10">FOR THE GAMERS BY THE GAMER/DEVELOPER</p>
+          <p className="text-muted text-sm font-mono mb-8 relative z-10">DISTRIBUTED COMMERCE & REAL-TIME TELEMETRY ENGINE</p>
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 relative z-10 w-full overflow-x-auto pb-4">
             <div className="flex flex-col items-center justify-center p-4 bg-background border border-white/10 rounded-xl min-w-[120px]">
               <GlobeCode className="w-6 h-6 text-blue-400 mb-2" />
-              <span className="text-xs font-mono text-white">React UI</span>
+              <span className="text-xs font-mono text-white">React 19 (Vite)</span>
             </div>
             <div className="h-8 w-px md:h-px md:w-16 bg-white/10 relative overflow-hidden">
               <div className="absolute left-0 top-0 h-full w-full bg-blue-500/50 animate-[slide_1.5s_linear_infinite]" />
             </div>
             <div className="flex flex-col items-center justify-center p-4 bg-background border border-white/10 rounded-xl min-w-[120px]">
-              <UserCheck className="w-6 h-6 text-yellow-400 mb-2" />
-              <span className="text-xs font-mono text-white">RBAC Engine</span>
+              <Workflow className="w-6 h-6 text-amber-400 mb-2" />
+              <span className="text-xs font-mono text-white">Saga Orchestrator</span>
             </div>
             <div className="h-8 w-px md:h-px md:w-16 bg-white/10 relative overflow-hidden">
               <div className="absolute left-0 top-0 h-full w-full bg-blue-500/50 animate-[slide_1.5s_linear_infinite_0.5s]" />
             </div>
             <div className="flex flex-col items-center justify-center p-4 bg-background border border-white/10 rounded-xl min-w-[120px]">
-              <Server className="w-6 h-6 text-white mb-2" />
-              <span className="text-xs font-mono text-white">Node.js API</span>
+              <Zap className="w-6 h-6 text-cyan-400 mb-2" />
+              <span className="text-xs font-mono text-white">BM25 Prefix Trie</span>
             </div>
             <div className="h-8 w-px md:h-px md:w-16 bg-white/10 relative overflow-hidden">
               <div className="absolute left-0 top-0 h-full w-full bg-blue-500/50 animate-[slide_1.5s_linear_infinite_0.75s]" />
             </div>
             <div className="flex flex-col items-center justify-center p-4 bg-background border border-white/10 rounded-xl min-w-[120px]">
               <Database className="w-6 h-6 text-purple-400 mb-2" />
-              <span className="text-xs font-mono text-white">PostgreSQL</span>
+              <span className="text-xs font-mono text-white">PostgreSQL 18</span>
             </div>
             <div className="h-8 w-px md:h-px md:w-16 bg-white/10 relative overflow-hidden">
               <div className="absolute left-0 top-0 h-full w-full bg-blue-500/50 animate-[slide_1.5s_linear_infinite_1s]" />
             </div>
             <div className="flex flex-col items-center justify-center p-4 bg-background border border-blue-500/30 rounded-xl min-w-[120px] shadow-[0_0_15px_rgba(59,130,246,0.1)]">
-              <Cloud className="w-6 h-6 text-blue-400 mb-2" />
-              <span className="text-xs font-mono text-blue-400 font-bold">Cloudinary CDN</span>
+              <Activity className="w-6 h-6 text-blue-400 mb-2" />
+              <span className="text-xs font-mono text-blue-400 font-bold">OpenTelemetry APM</span>
             </div>
           </div>
         </Link>
