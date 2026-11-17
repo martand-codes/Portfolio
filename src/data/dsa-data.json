@@ -48,6 +48,10 @@
     "count": 10
   },
   {
+    "name": "Strings",
+    "count": 7
+  },
+  {
     "name": "Binary Search Trees",
     "count": 7
   },
@@ -57,10 +61,6 @@
   },
   {
     "name": "Maths",
-    "count": 6
-  },
-  {
-    "name": "Strings",
     "count": 6
   },
   {
