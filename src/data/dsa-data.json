@@ -44,6 +44,10 @@
     "count": 14
   },
   {
+    "name": "Sliding Window",
+    "count": 11
+  },
+  {
     "name": "Bit Manipulation",
     "count": 10
   },
@@ -62,10 +66,6 @@
   {
     "name": "Maths",
     "count": 6
-  },
-  {
-    "name": "Sliding Window",
-    "count": 5
   },
   {
     "name": "Trie",
