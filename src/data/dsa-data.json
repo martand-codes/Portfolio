@@ -24,6 +24,10 @@
     "count": 20
   },
   {
+    "name": "SQL",
+    "count": 19
+  },
+  {
     "name": "Linked List",
     "count": 17
   },
@@ -40,10 +44,6 @@
     "count": 15
   },
   {
-    "name": "SQL",
-    "count": 14
-  },
-  {
     "name": "Sliding Window",
     "count": 11
   },
@@ -53,7 +53,7 @@
   },
   {
     "name": "Strings",
-    "count": 7
+    "count": 8
   },
   {
     "name": "Binary Search Trees",
